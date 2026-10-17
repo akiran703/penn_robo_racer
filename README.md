@@ -1,9 +1,10 @@
-Penn RoboRacer Technical Challenge: Wall Follower
+# Penn RoboRacer Technical Challenge: Wall Follower
 
 ## Results
 
 - **Video (Driver's Eye, unlisted):** https://youtu.be/IRIURxUPwYc
-- **Fastest clean lap:** `11.201 but didnt record but saved a screenshot, 11.327 recorded with logs shown in the video;` 
+- **Fastest clean lap:** **11.327 s**, recorded in the video above.
+  (A faster clean lap of 11.201 s happened during an unrecorded run. See the screenshot [`best_lap_11.201.png`](best_lap_11.201.png).)
 
 ## How it works
 
@@ -43,3 +44,14 @@ The node is `autodrive_devkit/autodrive_roboracer/wall_follow_node.py`. It runs 
 
    An unattended 6-hour run (400 trials) brought the mean lap from 12.4 s to about 11.6 s. Repeat runs of the final settings gave a median lap of 11.55 s and a best of 11.01 s. The tuned values are specific to this practice track. The driving logic itself is unchanged and uses only the live scan.
 
+## Run it
+
+Clone [AutoDRIVE-RoboRacer-Sim-Racing](https://github.com/AutoDRIVE-Ecosystem/AutoDRIVE-RoboRacer-Sim-Racing), replace its `autodrive_devkit/` folder with the one from this repo, then build and start the container as in the challenge instructions. Inside the container:
+
+```bash
+cd /home/autodrive_devkit && colcon build && source install/setup.bash
+ros2 launch autodrive_roboracer bringup_headless.launch.py   # terminal 1: bridge
+ros2 run autodrive_roboracer wall_follow_node                # terminal 2: wall follower
+```
+
+In the simulator, connect to `127.0.0.1:4567` and set Driving Mode to **Autonomous**.
